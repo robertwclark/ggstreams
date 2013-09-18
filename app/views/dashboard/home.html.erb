@@ -1,0 +1,36 @@
+<h1>Dashboard#home</h1>
+<p>Find me in app/views/dashboard/home.html.erb</p>
+
+<object type="application/x-shockwave-flash" 
+        height="378"
+        width="620"
+        id="live_embed_player_flash" 
+        data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=<%=@streams.first["channel"]["display_name"]%>" 
+        bgcolor="#000000">
+  <param  name="allowFullScreen" 
+          value="true" />
+  <param  name="allowScriptAccess" 
+          value="always" />
+  <param  name="allowNetworking" 
+          value="all" />
+  <param  name="movie" 
+          value="http://www.twitch.tv/widgets/live_embed_player.swf" />
+  <param  name="flashvars" 
+          value="hostname=www.twitch.tv&channel=<%=@streams.first["channel"]["display_name"]%>&auto_play=true&start_volume=75" />
+</object>
+<ul class="nav">
+<%@streams.each do |s| %>
+  <li>
+    <a datachannel="<%=s["channel"]["display_name"]%>">
+      <img src="<%=s["preview"]["medium"] %>" />
+      <h3><%= truncate(s["channel"]["status"], :length => 30, :separator => ' ') %></h4>
+      <h4><%=s["channel"]["display_name"]%></h4>
+    </a>
+   
+  </li>
+<%end%>
+</ul>
+
+<br /> 
+
+<%=@streams%>
